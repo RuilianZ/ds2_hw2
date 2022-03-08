@@ -183,3 +183,50 @@ Among all the fitted lines within the (2, 15) degree of freedom range, df = `r r
 
 
 
+## Generalized Additive Model (GAM)
+
+```{r}
+set.seed(2570)
+
+# set cross validation method
+ctrl = trainControl(method = "cv", number = 10)
+
+# fit a GAM model using all the predictors
+# ngcv package not available for current R version, siwth to caret
+gam_fit = train(x = x_train,
+                y = y_train,
+                method = "gam",
+                #tuneGrid = data.frame(method = "GCV.Cp",select = c(TRUE, FALSE)),
+                trControl = ctrl)
+
+gam_fit$bestTune
+
+gam_fit$finalModel
+
+summary(gam_fit)
+```
+
+```{r}
+# plot the results
+par(mar=c(1,1,1,1))
+par(mfrow = c(4, 4))
+
+plot(gam_fit$finalModel, 
+     residuals = TRUE, 
+     all.terms = TRUE, 
+     shade = TRUE, 
+     shade.col = 5)
+
+# train RMSE of final model
+gam_train_rmse = sqrt(mean((y_train - predict(gam_fit)) ^ 2))
+gam_train_rmse
+
+# make predictions
+gam_pred = predict(gam_fit, x_test)
+
+# test RMSE of final model
+gam_test_rmse = sqrt(mean(y_test - gam_pred) ^ 2)
+gam_test_rmse
+```
+
+The training RMSE is`r gam_train_rmse` and the test RMSE is `r gam_test_rmse`.
