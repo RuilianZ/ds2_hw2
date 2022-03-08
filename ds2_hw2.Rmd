@@ -10,6 +10,7 @@ library(tidyverse)
 library(skimr) # for data summary
 library(GGally) # for visualization
 library(caret)
+library(pdp) # for partial dependence plot
 library(gridExtra)
 ```
 
@@ -275,10 +276,39 @@ The training RMSE is`r mars_train_rmse` and the test RMSE is `r mars_test_rmse`.
 The final model's maximum degree of interactions is 1, which means the final model is an additive model. `nprune` is 13, which means there are 13 terms in the final model, including intercept.  
 The most important terms in the final model are `expend`, `room_board`, `perc_alumni`, `accept`, and `enroll`.
 
-
-
-##
 ```{r}
+# partial dependence plot
+# use `books` as predictor
+pdp = pdp::partial(mars_fit,
+                   pred.var = c("enroll"),
+                   grid.resolution = 20) %>% 
+  autoplot()
 
+# use `books` and `expend` as predictors
+
+pdp_2d = pdp::partial(mars_fit,
+                      pred.var = c("enroll", "expend"),
+                      grid.resolution = 20) %>% 
+  pdp::plotPartial(levelplot = FALSE,
+                   zlab = "yhat",
+                   drape = TRUE,
+                   screen = list(z = 20, x = -60))
+
+# grid.arrange(pdp, pdp_2d, n_col = 2)
 ```
 
+Within the range of approximately less than 1000, we can see a trend of decrease on the response variable when as `enroll` increases, and the value of response variable stays stable afterwards. This turning point is the knot.   
+
+
+## Model selection
+
+```{r}
+resamp = resamples(list(gam_model = gam_fit,
+                        mars_model = mars_fit))
+
+summary(resamp)
+
+bwplot(resamp, metric = "RMSE")
+```
+
+In this data example, we might prefer the use of MARS model over linear model when predicting the out-of-state tuition, since the RMSE of MARS model is smaller, which indicates the MARS model fits the data better.
