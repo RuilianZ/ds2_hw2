@@ -229,4 +229,56 @@ gam_test_rmse = sqrt(mean(y_test - gam_pred) ^ 2)
 gam_test_rmse
 ```
 
-The training RMSE is`r gam_train_rmse` and the test RMSE is `r gam_test_rmse`.
+The training RMSE is`r gam_train_rmse` and the test RMSE is `r gam_test_rmse`.  
+Coefficients are not printed for smooth terms because each smooth term has several coefficients corresponding to different basis functions. The degrees of freedom of each term represent the complexity of the smooth function.  
+In the final model, `perc_alumni`, `grad_rate`, `room_board`, `enroll`, `accept`, `f_undergrad`, and `expend` are the most significant terms.
+
+
+## Multivariate Adaptive Regression spline (MARS)
+
+```{r}
+set.seed(2570)
+
+# generate all possible combinations of degree and prune
+mars_grid = expand.grid(degree = 1:3,
+                        nprune = 2:15)
+
+# fit MARS model using all predictors
+mars_fit = train(x = x_train,
+                 y = y_train,
+                 method = "earth",
+                 tuneGrid = mars_grid,
+                 trControl = ctrl)
+
+# plot results
+plot(mars_fit)
+
+mars_fit$bestTune
+
+summary(mars_fit$finalModel)
+
+coef(mars_fit$finalModel)
+
+# train RMSE of final model
+mars_train_rmse = sqrt(mean((y_train - predict(mars_fit)) ^ 2))
+mars_train_rmse
+
+# make predictions
+mars_pred = predict(mars_fit, x_test)
+
+# test RMSE of final model
+mars_test_rmse = sqrt(mean(y_test - gam_pred) ^ 2)
+mars_test_rmse
+```
+
+The training RMSE is`r mars_train_rmse` and the test RMSE is `r mars_test_rmse`.  
+The final model's maximum degree of interactions is 1, which means the final model is an additive model. `nprune` is 13, which means there are 13 terms in the final model, including intercept.  
+The most important terms in the final model are `expend`, `room_board`, `perc_alumni`, `accept`, and `enroll`.
+
+
+
+##
+```{r}
+
+```
+
