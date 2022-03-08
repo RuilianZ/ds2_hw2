@@ -144,11 +144,11 @@ ss_func = function(df) {
                                    y = train_df$outstate,
                                    df = df)
   
-  pred_ss_fun = predict(fit_ss_fun, x = terminal_grid)
+  pred_ss_fun = predict(fit_ss_fun, x = test_df$terminal)
   
   
   pred_ss_df_fun = data.frame(predicted = pred_ss_fun$y,
-                         terminal = terminal_grid,
+                         terminal = test_df$terminal,
                          df = df)
   
 }
@@ -169,5 +169,17 @@ for (x in df_list) {
 output_ss_df = do.call("rbind", output_ss) %>% 
   as.data.frame()
 ```
+
+```{r}
+# plot results for a range of df
+p + 
+  geom_line(aes(x = terminal, y = predicted, group = df, color = df), data = output_ss_df) + 
+  geom_line(aes(x = terminal, y = predicted), data = pred_ss_test_df, color = rgb(.8, .1, .1, 1))
+```
+
+The above plot shows the fitted smoothing spline models using a range of degree of freedoms. The lines wiggle around the red line, which is the model using the optimum degree of freedom.  
+As the degree of freedom approaching to 2, the line gets more linear; as the degree of freedom approaching to 15, the line gets more wiggled.  
+Among all the fitted lines within the (2, 15) degree of freedom range, df = `r round(fit_ss$df, 3)` should be the nearest to the red line.
+
 
 
