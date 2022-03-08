@@ -7,8 +7,9 @@ output: github_document
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(skimr) # for data summary
+library(GGally) # for visualization
 library(caret)
-#library(GGally)
 library(gridExtra)
 ```
 
@@ -39,10 +40,62 @@ y_test = test_df$outstate
 
 
 
-## Exploratory data analysis
+## Exploratory data analysis (using train_df)
 
 ```{r}
+# data dimension and summary
+dim(train_df)
 
+summary(train_df)
+
+skimr::skim(train_df)
 ```
 
+There are 453 rows and 17 columns in training data, all the variables are numeric.
+
+```{r}
+# set plot theme
+theme1 = trellis.par.get()
+theme1$plot.symbol$col = rgb(.2, .4, .2, .5)
+theme1$plot.symbol$pch = 16
+theme1$plot.line$col = rgb(.8, .1, .1, 1)
+theme1$plot.line$lwd = 2
+theme1$strip.background$col = rgb(.0, .2, .6, .2)
+trellis.par.set(theme1)
+
+# scatter plot
+# all predictors are included since they are all continuous
+featurePlot(
+  x_train, 
+  y_train, 
+  plot = "scatter", 
+  labels = c("","Out-of-state Tuition"),
+  layout = c(4, 4))
+```
+
+From the scatter plot above, we can see that there might be some linear trends between the outcome variable `outstate` and some of the predictors, for example, `phd` and `terminal`.  
+
+
+## Soothing spline
+
+```{r}
+set.seed(2570)
+
+# fit smoothing spline models using terminal as the only predictor of outstate 
+fit_ss = smooth.spline(x = train_df$terminal, y = train_df$outstate)
+
+# optimal degree of freedom obtained by generalized cross-validation
+fit_ss$df
+
+# generate predictor grid
+range(train_df$terminal)
+terminal_grid <- seq(from = 24, to = 100, by = 1)
+
+# make prediction
+pred_ss = predict(fit_ss,
+                  x = terminal_grid)
+
+pred_ss_df = data.frame(predicted = pred_ss$y,
+                        terminal = terminal_grid)
+```
 
