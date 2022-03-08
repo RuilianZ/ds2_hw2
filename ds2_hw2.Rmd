@@ -2,7 +2,11 @@
 title: "ds2_hw2"
 author: "Ruilian Zhang"
 date: "3/6/2022"
-output: github_document
+output: 
+  pdf_document:
+    latex_engine: xelatex
+    toc: yes
+    toc_depth: 3
 ---
 
 ```{r setup, include=FALSE}
@@ -14,6 +18,9 @@ library(pdp) # for partial dependence plot
 library(gridExtra)
 ```
 
+```{r, include=FALSE}
+options(tinytex.verbose = TRUE)
+```
 
 ```{r}
 # data cleaning
