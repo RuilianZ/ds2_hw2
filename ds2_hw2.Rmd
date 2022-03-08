@@ -76,7 +76,7 @@ featurePlot(
 From the scatter plot above, we can see that there might be some linear trends between the outcome variable `outstate` and some of the predictors, for example, `phd` and `terminal`.  
 
 
-## Soothing spline
+## Smoothing splines
 
 ```{r}
 set.seed(2570)
@@ -86,7 +86,14 @@ fit_ss = smooth.spline(x = train_df$terminal, y = train_df$outstate)
 
 # optimal degree of freedom obtained by generalized cross-validation
 fit_ss$df
+```
 
+The optimal degree of freedom obtained by default cross validation is `r round(fit_ss$df, 3)`.  
+
+Use this **optimal degree of freedom** to make following predictions:
+
+```{r}
+# make prediction using a grid of terminal values
 # generate predictor grid
 range(train_df$terminal)
 terminal_grid <- seq(from = 24, to = 100, by = 1)
@@ -97,5 +104,70 @@ pred_ss = predict(fit_ss,
 
 pred_ss_df = data.frame(predicted = pred_ss$y,
                         terminal = terminal_grid)
+
+# plot test data
+p = ggplot(data = test_df, aes(x = terminal, y = outstate)) +
+     geom_point(color = rgb(.2, .4, .2, .5))
+
+# plot predicted value
+p + 
+  geom_line(aes(x = terminal, y = predicted), 
+            data = pred_ss_df,
+            color = rgb(.8, .1, .1, 1)) + 
+  theme_bw()
 ```
+
+```{r}
+# make prediction using test data
+pred_ss_test = predict(fit_ss,
+                       x = test_df$terminal)
+
+pred_ss_test_df = data.frame(predicted = pred_ss_test$y,
+                             terminal = test_df$terminal)
+
+# plot predicted value
+p + 
+  geom_line(aes(x = terminal, y = predicted), 
+            data = pred_ss_test_df,
+            color = rgb(.8, .1, .1, 1)) + 
+  theme_bw()
+```
+
+
+Use **a range of degree of freedom** to make predictions:
+
+```{r}
+# write a function using a range of df to fit models
+ss_func = function(df) {
+  
+  fit_ss_fun = smooth.spline(x = train_df$terminal, 
+                                   y = train_df$outstate,
+                                   df = df)
+  
+  pred_ss_fun = predict(fit_ss_fun, x = terminal_grid)
+  
+  
+  pred_ss_df_fun = data.frame(predicted = pred_ss_fun$y,
+                         terminal = terminal_grid,
+                         df = df)
+  
+}
+
+# create a list of df
+# 1 < df <= 16 - 1
+df_list = seq(2, 15, 1)
+
+# run the function using df_list
+output_ss = list()
+
+for (x in df_list) {
+  output_ss[[x]] = ss_func(x)
+}
+
+# do.call() executes a function by its name and a list of corresponding arguments
+# e.g. do.call("any_function", arguments_list) 
+output_ss_df = do.call("rbind", output_ss) %>% 
+  as.data.frame()
+```
+
 

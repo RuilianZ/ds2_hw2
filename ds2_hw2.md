@@ -55,37 +55,37 @@ summary(train_df)
 
     ##     outstate          apps           accept          enroll      
     ##  Min.   : 2340   Min.   :   81   Min.   :   72   Min.   :  35.0  
-    ##  1st Qu.: 9100   1st Qu.:  632   1st Qu.:  503   1st Qu.: 209.0  
-    ##  Median :11200   Median : 1132   Median :  859   Median : 326.0  
-    ##  Mean   :11819   Mean   : 1957   Mean   : 1274   Mean   : 451.9  
-    ##  3rd Qu.:13970   3rd Qu.: 2190   3rd Qu.: 1546   3rd Qu.: 514.0  
+    ##  1st Qu.: 9100   1st Qu.:  626   1st Qu.:  501   1st Qu.: 203.0  
+    ##  Median :11200   Median : 1109   Median :  837   Median : 321.0  
+    ##  Mean   :11807   Mean   : 1951   Mean   : 1289   Mean   : 449.6  
+    ##  3rd Qu.:13970   3rd Qu.: 2135   3rd Qu.: 1541   3rd Qu.: 509.0  
     ##  Max.   :21700   Max.   :20192   Max.   :13007   Max.   :4615.0  
-    ##    top10perc      top25perc       f_undergrad     p_undergrad    
-    ##  Min.   : 1.0   Min.   :  9.00   Min.   :  139   Min.   :   1.0  
-    ##  1st Qu.:17.0   1st Qu.: 43.00   1st Qu.:  840   1st Qu.:  62.0  
-    ##  Median :25.0   Median : 56.00   Median : 1235   Median : 208.0  
-    ##  Mean   :29.7   Mean   : 57.58   Mean   : 1844   Mean   : 414.6  
-    ##  3rd Qu.:37.0   3rd Qu.: 70.00   3rd Qu.: 1988   3rd Qu.: 513.0  
-    ##  Max.   :96.0   Max.   :100.00   Max.   :27378   Max.   :5346.0  
-    ##    room_board       books           personal         ph_d      
-    ##  Min.   :2460   Min.   : 250.0   Min.   : 250   Min.   :  8.0  
-    ##  1st Qu.:3750   1st Qu.: 450.0   1st Qu.: 800   1st Qu.: 59.0  
-    ##  Median :4400   Median : 500.0   Median :1100   Median : 73.0  
-    ##  Mean   :4575   Mean   : 546.7   Mean   :1226   Mean   : 71.1  
-    ##  3rd Qu.:5370   3rd Qu.: 600.0   3rd Qu.:1500   3rd Qu.: 85.0  
-    ##  Max.   :8124   Max.   :2340.0   Max.   :6800   Max.   :100.0  
-    ##     terminal        s_f_ratio      perc_alumni        expend     
-    ##  Min.   : 24.00   Min.   : 2.50   Min.   : 2.00   Min.   : 3186  
-    ##  1st Qu.: 68.00   1st Qu.:11.10   1st Qu.:17.00   1st Qu.: 7438  
-    ##  Median : 80.00   Median :12.80   Median :26.00   Median : 8946  
-    ##  Mean   : 78.58   Mean   :12.89   Mean   :26.43   Mean   :10573  
-    ##  3rd Qu.: 92.00   3rd Qu.:14.50   3rd Qu.:35.00   3rd Qu.:11751  
-    ##  Max.   :100.00   Max.   :27.80   Max.   :64.00   Max.   :56233  
+    ##    top10perc       top25perc       f_undergrad     p_undergrad     
+    ##  Min.   : 1.00   Min.   :  9.00   Min.   :  139   Min.   :    1.0  
+    ##  1st Qu.:17.00   1st Qu.: 43.00   1st Qu.:  809   1st Qu.:   66.0  
+    ##  Median :25.00   Median : 55.00   Median : 1270   Median :  211.0  
+    ##  Mean   :29.37   Mean   : 57.02   Mean   : 1855   Mean   :  448.9  
+    ##  3rd Qu.:36.00   3rd Qu.: 70.00   3rd Qu.: 1964   3rd Qu.:  542.0  
+    ##  Max.   :96.00   Max.   :100.00   Max.   :27378   Max.   :10221.0  
+    ##    room_board       books           personal         ph_d       
+    ##  Min.   :2370   Min.   : 250.0   Min.   : 250   Min.   :  8.00  
+    ##  1st Qu.:3700   1st Qu.: 450.0   1st Qu.: 800   1st Qu.: 59.00  
+    ##  Median :4372   Median : 500.0   Median :1090   Median : 73.00  
+    ##  Mean   :4588   Mean   : 546.1   Mean   :1211   Mean   : 70.74  
+    ##  3rd Qu.:5400   3rd Qu.: 600.0   3rd Qu.:1500   3rd Qu.: 85.00  
+    ##  Max.   :8124   Max.   :2340.0   Max.   :6800   Max.   :100.00  
+    ##     terminal        s_f_ratio      perc_alumni       expend     
+    ##  Min.   : 24.00   Min.   : 2.50   Min.   : 2.0   Min.   : 3186  
+    ##  1st Qu.: 68.00   1st Qu.:11.10   1st Qu.:16.0   1st Qu.: 7495  
+    ##  Median : 80.00   Median :12.60   Median :25.0   Median : 8990  
+    ##  Mean   : 78.42   Mean   :12.86   Mean   :25.9   Mean   :10384  
+    ##  3rd Qu.: 92.00   3rd Qu.:14.40   3rd Qu.:34.0   3rd Qu.:11525  
+    ##  Max.   :100.00   Max.   :39.80   Max.   :64.0   Max.   :42926  
     ##    grad_rate     
     ##  Min.   : 15.00  
     ##  1st Qu.: 58.00  
     ##  Median : 69.00  
-    ##  Mean   : 69.16  
+    ##  Mean   : 68.62  
     ##  3rd Qu.: 81.00  
     ##  Max.   :118.00
 
@@ -110,23 +110,23 @@ Data summary
 
 | skim_variable | n_missing | complete_rate |     mean |      sd |     p0 |    p25 |     p50 |     p75 |    p100 | hist  |
 |:--------------|----------:|--------------:|---------:|--------:|-------:|-------:|--------:|--------:|--------:|:------|
-| outstate      |         0 |             1 | 11818.63 | 3756.05 | 2340.0 | 9100.0 | 11200.0 | 13970.0 | 21700.0 | ▁▆▇▃▂ |
-| apps          |         0 |             1 |  1956.68 | 2402.27 |   81.0 |  632.0 |  1132.0 |  2190.0 | 20192.0 | ▇▁▁▁▁ |
-| accept        |         0 |             1 |  1273.79 | 1324.95 |   72.0 |  503.0 |   859.0 |  1546.0 | 13007.0 | ▇▁▁▁▁ |
-| enroll        |         0 |             1 |   451.94 |  461.90 |   35.0 |  209.0 |   326.0 |   514.0 |  4615.0 | ▇▁▁▁▁ |
-| top10perc     |         0 |             1 |    29.70 |   18.18 |    1.0 |   17.0 |    25.0 |    37.0 |    96.0 | ▇▇▃▁▁ |
-| top25perc     |         0 |             1 |    57.58 |   19.93 |    9.0 |   43.0 |    56.0 |    70.0 |   100.0 | ▁▆▇▅▃ |
-| f_undergrad   |         0 |             1 |  1843.89 | 2140.92 |  139.0 |  840.0 |  1235.0 |  1988.0 | 27378.0 | ▇▁▁▁▁ |
-| p_undergrad   |         0 |             1 |   414.58 |  610.62 |    1.0 |   62.0 |   208.0 |   513.0 |  5346.0 | ▇▁▁▁▁ |
-| room_board    |         0 |             1 |  4574.78 | 1062.89 | 2460.0 | 3750.0 |  4400.0 |  5370.0 |  8124.0 | ▃▇▅▂▁ |
-| books         |         0 |             1 |   546.66 |  183.44 |  250.0 |  450.0 |   500.0 |   600.0 |  2340.0 | ▇▁▁▁▁ |
-| personal      |         0 |             1 |  1225.58 |  654.89 |  250.0 |  800.0 |  1100.0 |  1500.0 |  6800.0 | ▇▂▁▁▁ |
-| ph_d          |         0 |             1 |    71.10 |   17.43 |    8.0 |   59.0 |    73.0 |    85.0 |   100.0 | ▁▂▆▇▇ |
-| terminal      |         0 |             1 |    78.58 |   15.36 |   24.0 |   68.0 |    80.0 |    92.0 |   100.0 | ▁▁▃▆▇ |
-| s_f\_ratio    |         0 |             1 |    12.89 |    3.27 |    2.5 |   11.1 |    12.8 |    14.5 |    27.8 | ▁▇▇▁▁ |
-| perc_alumni   |         0 |             1 |    26.43 |   12.67 |    2.0 |   17.0 |    26.0 |    35.0 |    64.0 | ▅▇▇▃▁ |
-| expend        |         0 |             1 | 10573.42 | 5882.74 | 3186.0 | 7438.0 |  8946.0 | 11751.0 | 56233.0 | ▇▂▁▁▁ |
-| grad_rate     |         0 |             1 |    69.16 |   16.55 |   15.0 |   58.0 |    69.0 |    81.0 |   118.0 | ▁▃▇▆▁ |
+| outstate      |         0 |             1 | 11807.10 | 3693.06 | 2340.0 | 9100.0 | 11200.0 | 13970.0 | 21700.0 | ▁▆▇▃▂ |
+| apps          |         0 |             1 |  1951.45 | 2485.30 |   81.0 |  626.0 |  1109.0 |  2135.0 | 20192.0 | ▇▁▁▁▁ |
+| accept        |         0 |             1 |  1289.30 | 1419.08 |   72.0 |  501.0 |   837.0 |  1541.0 | 13007.0 | ▇▁▁▁▁ |
+| enroll        |         0 |             1 |   449.55 |  471.76 |   35.0 |  203.0 |   321.0 |   509.0 |  4615.0 | ▇▁▁▁▁ |
+| top10perc     |         0 |             1 |    29.37 |   17.95 |    1.0 |   17.0 |    25.0 |    36.0 |    96.0 | ▇▇▃▁▁ |
+| top25perc     |         0 |             1 |    57.02 |   19.64 |    9.0 |   43.0 |    55.0 |    70.0 |   100.0 | ▁▆▇▆▃ |
+| f_undergrad   |         0 |             1 |  1854.64 | 2214.61 |  139.0 |  809.0 |  1270.0 |  1964.0 | 27378.0 | ▇▁▁▁▁ |
+| p_undergrad   |         0 |             1 |   448.94 |  756.33 |    1.0 |   66.0 |   211.0 |   542.0 | 10221.0 | ▇▁▁▁▁ |
+| room_board    |         0 |             1 |  4587.81 | 1102.11 | 2370.0 | 3700.0 |  4372.0 |  5400.0 |  8124.0 | ▃▇▅▃▁ |
+| books         |         0 |             1 |   546.11 |  171.71 |  250.0 |  450.0 |   500.0 |   600.0 |  2340.0 | ▇▁▁▁▁ |
+| personal      |         0 |             1 |  1211.32 |  639.95 |  250.0 |  800.0 |  1090.0 |  1500.0 |  6800.0 | ▇▂▁▁▁ |
+| ph_d          |         0 |             1 |    70.74 |   17.78 |    8.0 |   59.0 |    73.0 |    85.0 |   100.0 | ▁▁▆▇▇ |
+| terminal      |         0 |             1 |    78.42 |   15.66 |   24.0 |   68.0 |    80.0 |    92.0 |   100.0 | ▁▁▃▆▇ |
+| s_f\_ratio    |         0 |             1 |    12.86 |    3.47 |    2.5 |   11.1 |    12.6 |    14.4 |    39.8 | ▁▇▁▁▁ |
+| perc_alumni   |         0 |             1 |    25.90 |   12.53 |    2.0 |   16.0 |    25.0 |    34.0 |    64.0 | ▅▇▇▂▁ |
+| expend        |         0 |             1 | 10383.65 | 5017.64 | 3186.0 | 7495.0 |  8990.0 | 11525.0 | 42926.0 | ▇▂▁▁▁ |
+| grad_rate     |         0 |             1 |    68.62 |   16.91 |   15.0 |   58.0 |    69.0 |    81.0 |   118.0 | ▁▃▇▆▁ |
 
 There are 453 rows and 17 columns in training data, all the variables
 are numeric.
@@ -157,7 +157,7 @@ From the scatter plot above, we can see that there might be some linear
 trends between the outcome variable `outstate` and some of the
 predictors, for example, `phd` and `terminal`.
 
-## Soothing spline
+## Smoothing splines
 
 ``` r
 set.seed(2570)
@@ -169,9 +169,15 @@ fit_ss = smooth.spline(x = train_df$terminal, y = train_df$outstate)
 fit_ss$df
 ```
 
-    ## [1] 4.540695
+    ## [1] 4.244528
+
+The optimal degree of freedom obtained by default cross validation is
+4.245.
+
+Use this **optimal degree of freedom** to make following predictions:
 
 ``` r
+# make prediction using a grid of terminal values
 # generate predictor grid
 range(train_df$terminal)
 ```
@@ -187,4 +193,71 @@ pred_ss = predict(fit_ss,
 
 pred_ss_df = data.frame(predicted = pred_ss$y,
                         terminal = terminal_grid)
+
+# plot test data
+p = ggplot(data = test_df, aes(x = terminal, y = outstate)) +
+     geom_point(color = rgb(.2, .4, .2, .5))
+
+# plot predicted value
+p + 
+  geom_line(aes(x = terminal, y = predicted), 
+            data = pred_ss_df,
+            color = rgb(.8, .1, .1, 1)) + 
+  theme_bw()
+```
+
+![](ds2_hw2_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+``` r
+# make prediction using test data
+pred_ss_test = predict(fit_ss,
+                       x = test_df$terminal)
+
+pred_ss_test_df = data.frame(predicted = pred_ss_test$y,
+                             terminal = test_df$terminal)
+
+# plot predicted value
+p + 
+  geom_line(aes(x = terminal, y = predicted), 
+            data = pred_ss_test_df,
+            color = rgb(.8, .1, .1, 1)) + 
+  theme_bw()
+```
+
+![](ds2_hw2_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+Use **a range of degree of freedom** to make predictions:
+
+``` r
+# write a function using a range of df to fit models
+ss_func = function(df) {
+  
+  fit_ss_fun = smooth.spline(x = train_df$terminal, 
+                                   y = train_df$outstate,
+                                   df = df)
+  
+  pred_ss_fun = predict(fit_ss_fun, x = terminal_grid)
+  
+  
+  pred_ss_df_fun = data.frame(predicted = pred_ss_fun$y,
+                         terminal = terminal_grid,
+                         df = df)
+  
+}
+
+# create a list of df
+# 1 < df <= 16 - 1
+df_list = seq(2, 15, 1)
+
+# run the function using df_list
+output_ss = list()
+
+for (x in df_list) {
+  output_ss[[x]] = ss_func(x)
+}
+
+# do.call() executes a function by its name and a list of corresponding arguments
+# e.g. do.call("any_function", arguments_list) 
+output_ss_df = do.call("rbind", output_ss) %>% 
+  as.data.frame()
 ```
